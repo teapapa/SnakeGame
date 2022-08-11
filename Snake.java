@@ -97,7 +97,7 @@ public class Snake extends Application {
 
 			});
 
-			// add start snake parts
+			
 			snake.add(new Body(3, 3));
 			snake.add(new Body(3, 3));
 			primaryStage.setScene(scene);
@@ -131,8 +131,7 @@ public class Snake extends Application {
 			snake.get(i).y = snake.get(i - 1).y;
 		}
 
-		//directions
-		//if the snake touches the borders the game is over 
+		
 		switch (direction) {
 		case up:
 			snake.get(0).y--;
@@ -161,24 +160,21 @@ public class Snake extends Application {
 
 		}
 
-		// If snake eats the food add another part in the snake
 		if (CoordinateX == snake.get(0).x && CoordinateY == snake.get(0).y) {
 			snake.add(new Body(-1, -1));
 			food();
 		}
 
-		// If snake touches any part of its body the game is over
 		for (int i = 1; i < snake.size(); i++) {
 			if (snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y) {
 				GameOver = true;
 			}
 		}
 
-		// Fill background
+		
 		gc.setFill(Color.WHITE);
 		gc.fillRect(0, 0, Width * BodyX, Height * BodyY);
 		
-		//Checked Background
 		for (int i=1; i<21; i++) {
 			gc.setLineWidth(1);
                 gc.strokeLine(45*i, 50, 45*i, 650);
@@ -189,17 +185,14 @@ public class Snake extends Application {
 		}
             	
 
-		// Score
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font("", 30));
 		gc.fillText("Total Score: " + (Speed - 4), 700, 675);
 		
-		//Instructions
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font("", 25));
 		gc.fillText("Keys:   A-Right    W-Up     S-Down     D-Left", 10, 30);
 
-		// Random food color
 		Color cc = Color.WHITE;
 
 		switch (FoodColor) {
@@ -221,8 +214,6 @@ public class Snake extends Application {
 		}
 		gc.setFill(cc);
 		gc.fillOval(CoordinateX * BodyX, CoordinateY * BodyY, BodyX, BodyY);
-
-		// snake
 		
 		for (Body c : snake) {
 			gc.setFill(Color.GREEN);
@@ -232,7 +223,6 @@ public class Snake extends Application {
 
 	}
 
-	// Create new food
 	public static void food() {
 		start: while (true) {
 			CoordinateX = rand.nextInt(Width);
